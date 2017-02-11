@@ -1,0 +1,41 @@
+<root title="Widget Gallery">
+	<notebook fill="both">
+		<tab name="Basic widgets">
+			<grid fill="both">
+				<row>
+					<cell>Button</cell><cell><button>Click</button></cell><cell><button state="disabled">Can't click</button></cell>
+				</row>
+				<row>
+					<cell>Checkbutton</cell><cell><checkbutton>Something</checkbutton></cell><cell><checkbutton>Something else</checkbutton></cell>
+				</row>
+				<row>
+					<variable id="radio" type="string" />
+					<cell>Radiobutton</cell><cell><radiobutton value="option_one" variable="#radio">Option 1</radiobutton></cell><cell><radiobutton value="option_two" variable="#radio">Option 2</radiobutton></cell>
+				</row>
+				<row>
+					<variable id="entry" type="string" value="test" />
+					<cell>Entry</cell><cell><entry textvariable="#entry" /></cell><cell><entry textvariable="#entry" show="*" /></cell>
+				</row>
+				<row>
+					<array id="combo">
+						<var value="Test" />
+						<var value="Other value" />
+					</array>
+					<cell>Combobox</cell><cell colspan="2"><combobox values="#combo" /></cell>
+				</row>
+			</grid>
+		</tab>
+		<tab name="Advanced widgets">
+			<box>
+				<array id="treecol">
+					<var value="Size" />
+				</array>
+				<treeview columns="#treecol">
+					<treerow text="Element"><treerow text="Child" /><treerow text="Child" /></treerow>
+					<treerow text="Sibling" />
+					<treerow text="1"><treerow text="2"><treerow text="3"><treerow text="4"><treerow text="5"></treerow></treerow></treerow></treerow></treerow>
+				</treeview>
+			</box>
+		</tab>
+	</notebook>
+</root>

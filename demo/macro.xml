@@ -1,0 +1,9 @@
+<box fill="both" margin="10">
+	<notebook fill="both" id="main">
+	</notebook>
+	<box fill="x" orient="horizontal">
+		<button id="prev" text="Previous" />
+		<label text="" fill="x" />
+		<button id="next" text="Next" />
+	</box>
+</box>

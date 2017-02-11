@@ -1,0 +1,29 @@
+<root title="Foo Installer">
+	<setup fill="both">
+		<tab name="Welcome" fill="y">
+			<label fill="y" wraplength="250">
+			This wizard will guide you through the installation of Foo.
+			</label>
+		</tab>
+		<tab name="Destination" fill="y">
+			<variable id="dest" value="/dev/null" />
+			Please select a destination to install to:
+			<entry textvariable="#dest" />
+		</tab>
+		<tab name="Advanced" fill="y">
+			Please select the components you wish to install:
+			<grid>
+				<row>
+					<cell sticky="w"><checkbutton>Foo</checkbutton></cell>
+				</row>
+				<row>
+					<cell sticky="w"><checkbutton>Foo Web Browser Toolbar (Foo Bar)</checkbutton></cell>
+				</row>
+				<row>
+					<cell sticky="w"><checkbutton>Foo Shortcut</checkbutton></cell>
+				</row>
+				<row>
+			</grid>
+		</tab>
+	</setup>
+</root>

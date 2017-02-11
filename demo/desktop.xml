@@ -1,0 +1,49 @@
+<desktop>
+	<style>
+		button.active {
+		relief: sunken;
+		}
+	</style>
+	<window title="Calculatrice" x="10" y="10">
+		<notebook>
+			<tab name="Calculs">
+				<box margin="10" direction="horizontal">
+					<variable id="calcul" type="string" value="" />
+					<entry textvariable="#calcul" expand="yes" fill="both" />
+					<button padx="5" id="envoyer" text="=" expand="yes" fill="y" />
+				</box>
+				<grid margin="10" padding="1" expand="yes" fill="both">
+					<row>
+						<cell colspan="4">Powered by Tkel</cell>
+					</row>
+					<array id="buttons_ids">moins;fois;plus</array>
+					<array id="buttons_labels">-;*;+</array>
+					<for let="row" from="2" to="0">
+						<row>
+							<for let="nb" from="3*{row}+1" to="3*{row}+3">
+								<cell><button id="{nb}" text="{nb}" /></cell>
+							</for>
+							<cell><button text="#buttons_labels[{row}]" id="#buttons_ids[{row}]" /></cell>
+						</row>
+					</for>
+					<row>
+						<cell />
+						<cell><button id="0" text="0" /></cell>
+						<cell />
+						<cell><button id="div" text="/" /></cell>
+					</row>
+				</grid>
+			</tab>
+			<tab name="Historique">
+				Rien à afficher
+			</tab>
+		</notebook>
+	</window>
+	<window title="About" x="5" y="5">
+		<label padding="10">Tkel Calculator running in Tkvm</label>
+	</window>
+	<taskbar relwidth="100">
+		<button class="active" text="Calculatrice" />
+		<button text="About" />
+	</taskbar>
+</desktop>

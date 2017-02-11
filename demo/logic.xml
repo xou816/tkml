@@ -1,0 +1,98 @@
+<root title="Logic module">
+	<style>
+	.title{font: TkDefaultFont 11 bold;}
+	.para{font: TkDefaultFont 9 bold;}
+	</style>
+	<notebook>
+		<tab name="Welcome">
+			<label class="title">Welcome</label>
+			<label wraplength="500">This small application, fully written in Tkml, is intended to showcase the capabilities of the Logic module.</label>
+			<label wraplength="500">The only Python code is used to bootstrap the application:</label>
+			<text width="50" height="10">
+				from tkml import *
+				app = TkmlApp("logic.xml")
+				app.main()
+			</text>
+		</tab>
+		<tab name="Control structures">
+			<label class="title">Control structures</label>
+			<label wraplength="500">Control structures allow you to build simple applications without writing a single line of Python logic!</label>
+			<label class="para">switch, case</label>
+			<label wraplength="500">The switch element evaluates the expression passed to its 'value' attribute and compares it against the 'equal', 'greater', or 'lower' attribute of its children case elements. If such a comparison is truthy, then the markup inside the case element is evaluated, and subsequent cases are treated as truthy unless a case breaks the flow with 'break' attribute.</label>
+			<label wraplength="500">A non breaking case followed by another case is equivalent to a logical 'or'. Nested cases are treated as a logical 'and'... but this can get tricky!!</label>
+			<label wraplength="500">A case without attributes always evaluates as truthy!</label>
+			<label class="para">for</label>
+			<label wraplength="500">The for element iterates over a data source and replaces all interpolation elements (such as {example}) named after its 'let' attribute with the current iterated item.</label>
+			<label wraplength="500">The source can either be an array, specified with the 'in' attribute, or a range, defined by the 'from', 'to' and 'step' attributes (only 'to' is compulsory).</label>
+			<variable id="numeric" type="int" value="1" />
+			<spinbox textvariable="#numeric" from="0" to="10" />
+			<button command:increment="#numeric">Increment!</button>
+			<box>
+				<switch value="#numeric" break="yes">
+					<case equal="0">
+						<label>No button.</label>
+					</case>
+					<case equal="1">
+						<label>One button.</label>
+					</case>
+					<case greater="5">
+						<label>Many buttons!</label>
+					</case>
+					<case greater="1">
+						<label>Multiple buttons...</label>
+					</case>
+				</switch>
+			</box>
+			<variable id="layout" value="vertical"></variable>
+			<array id="layoutvalues">horizontal;vertical</array>
+			<combobox values="#layoutvalues" textvariable="#layout"></combobox>
+			<box orient="#layout">
+				<for let="counter" from="1" to="#numeric" step="1">
+					<button>Button {counter}</button>
+				</for>
+			</box>
+		</tab>
+		<tab name="Dynamic widget creation">
+			<label class="title">Dynamic widget creation</label>
+			<label wraplength="500">Interpolating elements such as let or for allow dynamic widget creation:</label>
+			<label class="para">let</label>
+			<label wraplength="500">The let element is a simpler version of the for element. It replaces interpolation tags named after its 'as' attribute with the expression evaluated in its 'value' attribute.</label>
+			<label wraplength="500">This in fact allows dynamic widget creation! Although this is probably not a good idea...</label>
+			<variable id="selected" value="button"></variable>
+			<array id="values">button;label;radiobutton</array>
+			<combobox values="#values" textvariable="#selected"></combobox>
+			<let value="#selected" as="widget">
+				<{widget}>I am a {widget}</{widget}>
+			</let>
+		</tab>
+		<tab name="Attribute filters">
+			<label class="title">Attribute filters</label>
+			<label padding="10" wraplength="500">Attribute filters modify values set to attributes before their setter is called. They are often used for arithmetics and array manipulation (attr:sum, attr:mean...), but also for event handlers (command:toggle, command:set, command:inc).</label>
+			<array id="test" type="int">1;2;3;5;2;3;6;1;1</array>
+			<array id="test2" type="int">1;2</array>
+			<box padding="10">
+				<let value:mean="#test" as="mean">
+					<let value="#test" as="test">
+						<label>Mean of {test} = {mean}</label>
+					</let>
+				</let>
+			</box>
+			<box padding="10">
+				<variable id="hide" type="boolean" value="yes" />
+				<variable id="disable" type="boolean" value="no" />
+				<variable id="password" value="secret" />
+				<button command:toggle="#disable">Toggle field availability</button>
+				<checkbutton command:toggle="#hide">Show password</checkbutton>
+				<entry hidden="#hide" disabled="#disable" textvariable="#password" />
+			</box>
+			<box padding="10">
+				<array id="nbrs" type="int">1;2;3;4</array>
+				<array id="stack" type="int">0</array>
+				<variable id="selnb" type="int" value="0" />
+				<combobox values="#nbrs" textvariable="#selnb" />
+				<button text="Add number" data="#selnb" command:append="#stack" />
+				<label text:sum="#stack"></label>
+			</box>
+		</tab>
+	</notebook>
+</root>

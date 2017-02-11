@@ -1,0 +1,23 @@
+<var id="path" value="/" />
+<array id="dirs">
+	<var value="/" />
+</array>
+<array id="treecol">
+	<var value="Type" />
+	<var value="Size" />
+	<var value="Last modified" />
+</array>
+<tab id="tab" padding="5" name="#path">
+	<box orient="horizontal" padding="1" fill="x">
+		<button id="prev" width="2"><</button>
+		<button id="next" width="2">></button>
+		<combobox id="adressbar" values="#dirs" textvariable="#path" fill="both" readonly="false" />
+		<button id="close" width="2">x</button>
+	</box>
+	<box orient="horizontal" fill="both">
+		<treeview id="main" columns="#treecol" fill="both">
+			<menu id="actions" />
+		</treeview>
+		<scrollbar target="#main" orient="vertical" fill="y" />
+	</box>
+</tab>

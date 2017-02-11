@@ -1,0 +1,8 @@
+<root title="TkmlExplorer">
+	<!-- <box fill="x" direction="horizontal" padding="2">
+		<label text=" " fill="x" /><button id="newtab" width="2" text="+" />
+	</box> -->
+	<notebook id="main" fill="both" margin="5">
+		<explorer_tab id="original" />
+	</notebook>
+</root>
